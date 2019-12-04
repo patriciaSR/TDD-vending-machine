@@ -6,9 +6,7 @@
   "scripts": {
     "test": "istanbul cover test2.js",
     "open-coverage": "open ./coverage/lcov-report/index.html",
-    "start": "live-server --port=8000",
-    "docs": "jsdoc change.js",
-    "open-docs": "open ./out/global.html"
+    "start": "live-server --port=8000"
   },
   "repository": {
     "type": "git",
