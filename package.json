@@ -4,7 +4,7 @@
   "description": "Follow this repository: [learn-tdd](https://github.com/dwyl/learn-tdd)",
   "main": "change2.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test"
   },
   "repository": {
     "type": "git",
