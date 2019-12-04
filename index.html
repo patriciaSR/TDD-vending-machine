@@ -38,11 +38,17 @@
       assert.deepEqual(result, expected);
     })
 
-    test('getChange(450, 600) should equal [100, 10, 2, 2]', function (assert) {
-      const result = getChange(486, 600);
+    test('getChange(450, 600) should equal [100, 50]', function (assert) {
+      const result = getChange(450, 600);
       const expected = [100, 50];
       assert.deepEqual(result, expected);
     })
+
+    test('getChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', function (assert) {
+      const result = getChange(12, 400);
+      const expected = [200, 100, 50, 20, 10, 5, 2, 1];
+      assert.deepEqual(result, expected);
+    });
   </script>
 
   <script>
@@ -52,19 +58,18 @@
       let change = [];
       const coins = [200, 100, 50, 20, 10, 5, 2, 1];
 
+      let difference = cashPaid - totalPayable;
 
-      if ((cashPaid - totalPayable) !== 0) { // Is any change required?
-        let difference = cashPaid -totalPayable;
-
+      if (difference !== 0) {
         coins.forEach((coin) => {
-          if (difference > coin || difference === coin) {
+          if (difference >= coin) {
             const coinsNumber = Math.floor(difference / coin);
 
-            for (let i=0; i < coinsNumber; i++) {
+            for (let i = 0; i < coinsNumber; i++) {
               change.push(coin);
             }
 
-          difference = difference - (coinsNumber*coin);
+            difference = difference - (coinsNumber * coin);
           }
         });
       }
@@ -72,6 +77,11 @@
       return change;
     };
   </script>
+
+  <!-- Load Blanket.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blanket.js/1.1.4/blanket.js"></script>
+<script src="/change2.js" data-cover></script> <!-- load our getChange method  -->
+<script src="/test2.js"></script>              <!-- load tests after getChange -->
 </body>
 
 </html>
