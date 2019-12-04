@@ -1,0 +1,77 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Vending Machine Change Calculator TDD Tutorial</title>
+  <!-- Load the QUnit CSS file from CDN - Require to display our tests attractively -->
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.18.0.css">
+  <!-- Pure CSS is a minimalist CSS file we have included to make things look nicer -->
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+</head>
+
+<body style='margin: 0 1em;'>
+  <div id='main'>
+    <h1>Vending Machine <em>Change Calculator</em></h1>
+    <h2>Calculate the change (<em>coins</em>) to return to a customer when they buy something.</h2>
+  </div>
+
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <!-- Load the QUnit Testing Framework from CDN - this is the important bit ... -->
+  <script src="https://code.jquery.com/qunit/qunit-1.18.0.js"></script>
+  <script>
+    test('getChange(1,1) should equal [] - an empty array', function (assert) {
+      const result = getChange(1, 1); //no change/coins just an empty array
+      const expected = [];
+      assert.deepEqual(result, expected);
+    }); // use deepEqual for arrays see: https://api.qunitjs.com/deepEqual/;
+
+    test('getChange(215, 300) should return [50, 20, 10, 5]', function (assert) {
+      const result = getChange(215, 300); // expect an array containing [50,20,10,5]
+      const expected = [50, 20, 10, 5];
+      assert.deepEqual(result, expected);
+    })
+
+    test('getChange(486, 600) should equal [100, 10, 2, 2]', function (assert) {
+      const result = getChange(486, 600);
+      const expected = [100, 10, 2, 2];
+      assert.deepEqual(result, expected);
+    })
+
+    test('getChange(450, 600) should equal [100, 10, 2, 2]', function (assert) {
+      const result = getChange(486, 600);
+      const expected = [100, 50];
+      assert.deepEqual(result, expected);
+    })
+  </script>
+
+  <script>
+    function getChange(totalPayable, cashPaid) {
+      'use strict';
+
+      let change = [];
+      const coins = [200, 100, 50, 20, 10, 5, 2, 1];
+
+
+      if ((cashPaid - totalPayable) !== 0) { // Is any change required?
+        let difference = cashPaid -totalPayable;
+
+        coins.forEach((coin) => {
+          if (difference > coin || difference === coin) {
+            const coinsNumber = Math.floor(difference / coin);
+
+            for (let i=0; i < coinsNumber; i++) {
+              change.push(coin);
+            }
+
+          difference = difference - (coinsNumber*coin);
+          }
+        });
+      }
+
+      return change;
+    };
+  </script>
+</body>
+
+</html>
