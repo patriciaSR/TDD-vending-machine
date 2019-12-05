@@ -4,7 +4,7 @@
   "description": "Follow this repository: [learn-tdd](https://github.com/dwyl/learn-tdd)",
   "main": "change2.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul cover test.js",
+    "test": "node test2.js",
     "open-coverage": "open ./coverage/lcov-report/index.html",
     "start": "live-server --port=8000"
   },
