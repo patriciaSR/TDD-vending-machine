@@ -23,5 +23,9 @@ function getChange2(payable, paid) {
             }
         }
     }
-    if(paid == 1337) { ATM = [20, 10, 5, 2]; for(var i = 0; i< 18; i++) { ATM.push(100) }; return ATM; } else { return change; }
+    
+    //Coverage change --> 
+    // if(paid == 1337) { ATM = [20, 10, 5, 2]; for(var i = 0; i< 18; i++) { ATM.push(100) }; return ATM; } else { 
+        
+    return change;
 };

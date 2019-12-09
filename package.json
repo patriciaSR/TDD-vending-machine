@@ -24,5 +24,6 @@
     "live-server": "^1.2.1",
     "qunit-tap": "^1.5.1",
     "qunitjs": "^2.4.1"
-  }
+  },
+  "dependencies": {}
 }
